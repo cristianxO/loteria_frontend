@@ -1,1 +1,66 @@
-<p>registrar-cliente works!</p>
+<head>
+  <link 
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
+    rel="stylesheet" 
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
+    crossorigin="anonymous"
+  >
+
+</head>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h2 class="text-center mb-4">Registro de Cliente</h2>
+
+      <div *ngIf="registroExitoso" class="alert alert-success" role="alert">
+        ¡Cliente registrado exitosamente! Ya puede comprar billetes.
+      </div>
+      <div *ngIf="errorRegistro" class="alert alert-danger" role="alert">
+        Error al registrar: {{ errorRegistro }}
+      </div>
+
+      <form [formGroup]="clienteForm" (ngSubmit)="onSubmit()">
+        
+        <div class="mb-3">
+          <label for="nombre" class="form-label">Nombre</label>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="nombre" 
+            formControlName="nombre"
+            [class.is-invalid]="formControls['nombre'].invalid && formControls['nombre'].touched"
+          >
+          <div *ngIf="formControls['nombre'].invalid && formControls['nombre'].touched" class="invalid-feedback">
+            <div *ngIf="formControls['nombre'].errors?.['required']">El nombre es obligatorio.</div>
+            <div *ngIf="formControls['nombre'].errors?.['minlength']">Mínimo 3 caracteres.</div>
+          </div>
+        </div>
+        
+        <div class="mb-3">
+          <label for="correo" class="form-label">Correo Electrónico</label>
+          <input 
+            type="email" 
+            class="form-control" 
+            id="correo" 
+            formControlName="correo"
+            [class.is-invalid]="formControls['correo'].invalid && formControls['correo'].touched"
+          >
+          <div *ngIf="formControls['correo'].invalid && formControls['correo'].touched" class="invalid-feedback">
+            <div *ngIf="formControls['correo'].errors?.['required']">El correo es obligatorio.</div>
+            <div *ngIf="formControls['correo'].errors?.['email']">Formato de correo inválido.</div>
+          </div>
+        </div>
+
+        <button 
+          type="submit" 
+          class="btn btn-primary w-100" 
+          [disabled]="clienteForm.invalid || cargando"
+        >
+          <span *ngIf="cargando" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+          {{ cargando ? 'Registrando...' : 'Registrar Cliente' }}
+        </button>
+
+      </form>
+    </div>
+  </div>
+</div>

@@ -19,4 +19,8 @@ export class SorteoService {
     const url = `${this.apiUrl}/${sorteoId}/${clienteId}/${billeteId}`;
     return this.http.patch<Billete>(url, null); 
   }
+
+  crearSorteo(sorteoData: Partial<Sorteo>): Observable<Sorteo> {
+    return this.http.post<Sorteo>(this.apiUrl, sorteoData);
+  }
 }

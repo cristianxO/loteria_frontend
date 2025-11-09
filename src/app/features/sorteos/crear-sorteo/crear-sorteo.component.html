@@ -1,0 +1,63 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 class="text-center mb-4">Crear Nuevo Sorteo</h2>
+
+            <div *ngIf="registroExitoso" class="alert alert-success" role="alert">
+                ¡Sorteo creado exitosamente! Redireccionando a la lista...
+            </div>
+            <div *ngIf="errorRegistro" class="alert alert-danger" role="alert">
+                Error: {{ errorRegistro }}
+            </div>
+
+            <form [formGroup]="sorteoForm" (ngSubmit)="onSubmit()">
+                
+                <div class="mb-3">
+                    <label for="nombreSorteo" class="form-label">Nombre del Sorteo</label>
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        id="nombreSorteo" 
+                        formControlName="nombreSorteo"
+                        [class.is-invalid]="formControls['nombreSorteo'].invalid && formControls['nombreSorteo'].touched"
+                    >
+                    <div *ngIf="formControls['nombreSorteo'].invalid && formControls['nombreSorteo'].touched" class="invalid-feedback">
+                        <div *ngIf="formControls['nombreSorteo'].errors?.['required']">El nombre es obligatorio.</div>
+                        <div *ngIf="formControls['nombreSorteo'].errors?.['minlength']">Mínimo 5 caracteres.</div>
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="fechaSorteo" class="form-label">Fecha del Sorteo</label>
+                    <input 
+                        type="date" 
+                        class="form-control" 
+                        id="fechaSorteo" 
+                        formControlName="fechaSorteo"
+                        [class.is-invalid]="formControls['fechaSorteo'].invalid && formControls['fechaSorteo'].touched"
+                    >
+                    <div *ngIf="formControls['fechaSorteo'].invalid && formControls['fechaSorteo'].touched" class="invalid-feedback">
+                        <div *ngIf="formControls['fechaSorteo'].errors?.['required']">La fecha es obligatoria.</div>
+                    </div>
+                </div>
+
+                <button 
+                    type="submit" 
+                    class="btn btn-success w-100" 
+                    [disabled]="sorteoForm.invalid || cargando"
+                >
+                    <span *ngIf="cargando" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                    {{ cargando ? 'Creando...' : 'Crear Sorteo' }}
+                </button>
+
+                <button 
+                    type="button"
+                    class="btn btn-secondary w-100 mt-2" 
+                    [routerLink]="['/sorteos']"
+                >
+                    Volver a la Lista
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
