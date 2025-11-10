@@ -1,0 +1,31 @@
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Gestión de Sorteos</h2>
+    
+    <ul class="nav nav-tabs mb-4">
+        <li class="nav-item">
+            <a 
+                class="nav-link" 
+                [class.active]="vistaActiva === 'lista'" 
+                (click)="cambiarVista('lista')"
+                style="cursor: pointer;"
+            >
+                Listado de Sorteos
+            </a>
+        </li>
+        <li class="nav-item">
+            <a 
+                class="nav-link" 
+                [class.active]="vistaActiva === 'crear'" 
+                (click)="cambiarVista('crear')"
+                style="cursor: pointer;"
+            >
+                Crear Nuevo Sorteo
+            </a>
+        </li>
+    </ul>
+
+    <div [ngSwitch]="vistaActiva">
+        <app-lista-sorteos *ngSwitchCase="'lista'"></app-lista-sorteos> 
+        <app-crear-sorteo *ngSwitchCase="'crear'"></app-crear-sorteo>
+    </div>
+</div>

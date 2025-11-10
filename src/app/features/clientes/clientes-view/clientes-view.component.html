@@ -1,0 +1,31 @@
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Gestión de Clientes</h2>
+    
+    <ul class="nav nav-tabs mb-4">
+        <li class="nav-item">
+            <a 
+                class="nav-link" 
+                [class.active]="vistaActiva === 'registro'" 
+                (click)="cambiarVista('registro')"
+                style="cursor: pointer;"
+            >
+                Registrar Cliente
+            </a>
+        </li>
+        <li class="nav-item">
+            <a 
+                class="nav-link" 
+                [class.active]="vistaActiva === 'historial'" 
+                (click)="cambiarVista('historial')"
+                style="cursor: pointer;"
+            >
+                Consultar Historial
+            </a>
+        </li>
+    </ul>
+
+    <div [ngSwitch]="vistaActiva">
+        <app-registrar-cliente *ngSwitchCase="'registro'"></app-registrar-cliente>
+        <app-historial-cliente *ngSwitchCase="'historial'"></app-historial-cliente>
+    </div>
+</div>

@@ -2,14 +2,13 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { SorteoService } from '../../../core/services/sorteo.service';
 import { Sorteo } from '../../../core/models/sorteo.interface';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-lista-sorteos',
   standalone: true,
   imports: [
     CommonModule,
-    RouterLink,
     DatePipe,
     RouterOutlet
 ],

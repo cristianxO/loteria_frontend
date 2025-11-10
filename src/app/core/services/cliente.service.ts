@@ -13,4 +13,8 @@ export class ClienteService {
   registrarCliente(clienteData: Partial<Cliente>): Observable<Cliente> {
     return this.http.post<Cliente>(this.apiUrl, clienteData);
   }
+
+  listarClientes(): Observable<Cliente[]> {
+    return this.http.get<Cliente[]>(this.apiUrl);
+  }
 }
