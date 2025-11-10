@@ -1,59 +1,70 @@
-# LoteriaFrontend
+# LOTERÍA_FRONTEND - Gestión de Sorteos y Venta de Billetes
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.19.
+Este proyecto implementa el *frontend* de gestión de loterías, **billetes** y **clientes** utilizando **Angular (Standalone Components)**. Consume la API RESTful de la aplicación *backend* desarrollada con Java + Spring Boot.
 
-## Development server
+---
 
-To start a local development server, run:
+## 1. Instrucciones de Arranque
 
-```bash
-ng serve
-```
+Para levantar el proyecto localmente, es fundamental que el **backend de la API esté operativo** y respondiendo a los *endpoints* definidos.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### 1.1. Prerrequisitos
 
-## Code scaffolding
+* **Node.js y npm**
+* **Angular CLI**
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### 1.2. Instalación y Ejecución
 
-```bash
-ng generate component component-name
-```
+1.  **Clonar el Repositorio:**
+    ```bash
+    git clone https://github.com/cristianxO/loteria_frontend.git
+    cd loteria-frontend
+    ```
+2.  **Instalar Dependencias:**
+    ```bash
+    npm install
+    ```
+3.  **Iniciar la Aplicación:**
+    ```bash
+    ng serve
+    ```
+    La aplicación estará disponible en `http://localhost:4200/`.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
-```
+## 2. Estructura y Estándares de Código
 
-## Building
+El proyecto sigue una arquitectura limpia, modularizada por funcionalidad y construida con el enfoque **Standalone Components** de Angular.
 
-To build the project run:
+### 2.1. Estructura de Módulos
 
-```bash
-ng build
-```
+* `src/app/core`: Contiene los **servicios**  y las **interfaces/modelos** de datos.
+* `src/app/features`: Contiene la lógica de las vistas de negocio, organizada por módulos:
+    * `sorteos`: Vistas clave como listado, creación de sorteos, creación de billetes, y venta.
+    * `clientes`: Gestión de clientes.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+### 2.2. Buenas Prácticas Aplicadas
 
-## Running unit tests
+* **Angular Standalone:** Uso de la arquitectura sin módulos (`@NgModule`) para mejorar el rendimiento y la simplicidad.
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+---
 
-```bash
-ng test
-```
+## 3. Módulos y Funcionalidades
 
-## Running end-to-end tests
+Las funcionalidades clave implementadas en el *frontend* se agrupan bajo rutas específicas, como se detalla a continuación:
 
-For end-to-end (e2e) testing, run:
+### 3.1. Módulo de Sorteos y Venta (`/sorteos`)
 
-```bash
-ng e2e
-```
+| Funcionalidad | Componente Principal | Ruta |
+| :--- | :--- | :--- |
+| **Listado de Sorteos** | `lista-sorteos` | `/sorteos` |
+| **Crear Sorteo** | `crear-sorteo` | `/sorteos/crear` |
+| **Crear Billetes** | `BilletesViewComponent` | `/sorteos/billetes` |
+| **Venta de Billetes** | `VentaViewComponent` | `/sorteos/vender` |
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+### 3.2. Módulo de Clientes (`/clientes`)
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+| Funcionalidad | Componente Principal | Ruta |
+| :--- | :--- | :--- |
+| **Registrar Cliente** | `registrar-cliente` | `/clientes/registrar` |
+| **Historial Cliente** | `historial-cliente` | `/clientes/historial` |
